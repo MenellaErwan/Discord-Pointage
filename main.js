@@ -18,7 +18,7 @@ var setMinute = splitTime[1];
   client.on('ready',() => {
     client.user.setPresence({ game: { name: 'Created by BM' }, status: '@ErwanMenella' });
     var j =schedule.scheduleJob({hour: setHour,minute: setMinute}, function(){
-    client.channels.get(idchannel).send(message);
+    client.channels.get(idchannel).send(`@CS:GO Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
   });
    
 })
