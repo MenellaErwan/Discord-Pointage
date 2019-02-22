@@ -2,31 +2,38 @@
 const config = require('./config.js');
 const Discord = require('discord.js');
 var schedule = require('node-schedule');
+const moment = require('moment')
 
-//Set objet,time,config
-const {token,idbot,idchannel,manager,time} = config;
+// Set objet,time,config
+const {token,idbot,idchannel,manager,mentionid,time} = config;
 const client = new Discord.Client();
-var d = new Date();
+
 
 // Variable
-var jour = d.getDate();
-var mois = d.getMonth() + 1;
 var splitTime = time.split(':');
 var setHour = splitTime[0];
 var setMinute = splitTime[1];
 
   client.on('ready',() => {
     client.user.setPresence({ game: { name: 'Created by BM' }, status: '@ErwanMenella' });
-    var j =schedule.scheduleJob({hour: setHour,minute: setMinute}, function(){
-    client.channels.get(idchannel).send(`@CS:GO Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
+    var j =schedule.scheduleJob({hour: setHour,minute: setMinute}, function()
+  {
+    var jour = moment().date();
+    var mois = moment().month()+1;
+    var m = mois.toString();
+    if (m.length = 1)
+    {
+        var zero = "0";
+        mois = zero.concat(m)
+    }
+    client.channels.get(idchannel).send(`<@&${mentionid}> Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
   });
    
 })
   
 client.on('message',(message) => {
   if (message.channel.id==idchannel && message.author.id ==idbot) {
-    message.react("📗")
-    .then(message.react("📕"));
+    message.react("📗").then(message.react("📕"));
   }
 
 })
