@@ -5,7 +5,7 @@ var schedule = require('node-schedule');
 const moment = require('moment')
 
 // Set objet,time,config
-const {token,idbot,idchannel,manager,mentionid,time} = config;
+const {token,idbot,idchannel,manager,captain,mentionid,time} = config;
 const client = new Discord.Client();
 
 
@@ -26,6 +26,12 @@ var setMinute = splitTime[1];
         var zero = "0";
         mois = zero.concat(m)
     }
+    var j = jour.toString();
+    if (j.length = 1)
+    {
+        var zero = "0";
+        jour = zero.concat(m)
+    }
     client.channels.get(idchannel).send(`<@&${mentionid}> Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
   });
    
@@ -45,6 +51,7 @@ client.on('messageReactionAdd',(reaction,user) => {
       var status = "présent";
     }else var status = "absent";
     client.users.get(manager).send(`<@${username}> sera ${status}.`);
+    client.users.get(captain).send(`<@${username}> sera ${status}.`);
   }
 })
 
