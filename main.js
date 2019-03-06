@@ -30,9 +30,10 @@ var setMinute = splitTime[1];
     if (j.length = 1)
     {
         var zero = "0";
-        jour = zero.concat(m)
+        jour = zero.concat(j)
     }
     client.channels.get(idchannel).send(`<@&${mentionid}> Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
+    console.log(`<@&${mentionid}> Pointage du ${jour}/${mois} pour les entraînements globaux de 20h à 23h.`);
   });
    
 })
@@ -52,6 +53,7 @@ client.on('messageReactionAdd',(reaction,user) => {
     }else var status = "absent";
     client.users.get(manager).send(`<@${username}> sera ${status}.`);
     client.users.get(captain).send(`<@${username}> sera ${status}.`);
+    console.log(`${username} react ${status}`);
   }
 })
 
