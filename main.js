@@ -21,13 +21,13 @@ var setMinute = splitTime[1];
     var jour = moment().date();
     var mois = moment().month()+1;
     var m = mois.toString();
-    if (m.length = 1)
+    if (m.length == 1)
     {
         var zero = "0";
         mois = zero.concat(m)
     }
     var j = jour.toString();
-    if (j.length = 1)
+    if (j.length == 1)
     {
         var zero = "0";
         jour = zero.concat(j)
